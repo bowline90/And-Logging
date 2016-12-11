@@ -6,6 +6,7 @@ from lib.method import metodo
 from lib.util import *
 from subprocess import check_call
 from shutil import copyfile
+import xml.etree.ElementTree as ET
 
 
 #Parse classes in order to find LOG
@@ -91,19 +92,42 @@ def ReadFile(name,globclax):
 	globclax[klx.getName()]=klx
 
 
+#def ParseManifest(path):
+#	for root, dirs, files in os.walk(path):
+#		for name in files:
+#			if name=="AndroidManifest.xml":
+#				localpath=os.path.join(root,name)
+#				with open(localpath,"r") as f:
+#					for line in f:
+#						if "package" in line:
+#							line=line.strip().split()
+#							for find in line:
+#								if "package" in find:
+#									s=find.split("=")[1].replace("\"","")
+#									return s
 def ParseManifest(path):
-	for root, dirs, files in os.walk(path):
-		for name in files:
-			if name=="AndroidManifest.xml":
-				localpath=os.path.join(root,name)
-				with open(localpath,"r") as f:
-					for line in f:
-						if "package" in line:
-							line=line.strip().split()
-							for find in line:
-								if "package" in find:
-									s=find.split("=")[1].replace("\"","")
-									return s
+	returned={}
+	tree = ET.parse(path+"\\AndroidManifest.xml")
+	root = tree.getroot()
+	#namespace=root.get('android')
+	namespace="{http://schemas.android.com/apk/res/android}"
+	returned['package']=root.get('package')
+	act=''
+	cat=''
+	for tag in root.iter('activity'):
+		name=tag.get(namespace+'name')
+		for tag2 in tag.iter('action'):
+			act=tag2.get(namespace+'name')
+			if act=="android.intent.action.MAIN":
+				break
+		for tag2 in tag.iter('category'):
+			cat=tag2.get(namespace+'name')
+			if cat=="android.intent.category.LAUNCHER":
+				break		
+		if act=='android.intent.action.MAIN' and cat=='android.intent.category.LAUNCHER':
+			returned['main']=name
+			break
+	return returned
 				
 	
 def main():
@@ -133,6 +157,10 @@ def main():
 	if package is None:
 		print "AndroidManifest doesn't found.\nExiting..."
 		return
+	else:
+		print "\n\nPackage information:"
+		print "\tPackage name:\t"+package['package']
+		print "\tMain activity:\t"+package['main']
 	ParseClax(glob)
 	raw_input("\n\nWrite over file? This process can modify the smali class. Ctrl+C to interrupt")
 	for cla in glob:
@@ -158,12 +186,18 @@ def main():
 	s=raw_input("Remove APK from device?[Y/N]")
 	subp=conf.getSdk()+"\\adb"
 	if s=="Y" or s=='y':
-		check_call([subp,'uninstall',package])
+		check_call([subp,'uninstall',package['package']])
 	raw_input("\n\nInstall Apk in the device? Press enter to continue, CTRL+C to interrupt")
 	check_call([subp,'install',path+"\\dist\\"+name])
 	raw_input("\n\nExecuting application and log parameters? Press enter to continue, CTRL+C to interrupt")
 	#Start logcat
-	
+	check_call([subp,'logcat','-c'])
+	#am start intent -> To start main activity
+	check_call([subp,'shell','am', 'start', '-n', package['package']+"/"+package['main']])
+	raw_input()
+	#adb logcat | grep "tag"
+	#print all log
+	#ParseLogcat()
 	
 	
 
