@@ -3,7 +3,7 @@
 
 
 #BYTE
-.method private static Log(Ljava/lang/String;Ljava/lang/String;B)V
+.method public static Log(Ljava/lang/String;Ljava/lang/String;B)V
     .locals 5
     .param p0, "TAB"    # Ljava/lang/String;
     .param p1, "msg"    # Ljava/lang/String;
@@ -37,7 +37,7 @@
 
 
 #CHAR
-.method private static Log(Ljava/lang/String;Ljava/lang/String;C)V
+.method public static Log(Ljava/lang/String;Ljava/lang/String;C)V
     .locals 3
     .param p0, "TAG"    # Ljava/lang/String;
     .param p1, "msg"    # Ljava/lang/String;
@@ -60,7 +60,7 @@
 .end method
 
 #DOUBLE
-.method private static Log(Ljava/lang/String;Ljava/lang/String;D)V
+.method public static Log(Ljava/lang/String;Ljava/lang/String;D)V
     .locals 4
     .param p0, "TAG"    # Ljava/lang/String;
     .param p1, "msg"    # Ljava/lang/String;
@@ -84,7 +84,7 @@
 
 
 #FLOAT
-.method private static Log(Ljava/lang/String;Ljava/lang/String;F)V
+.method public static Log(Ljava/lang/String;Ljava/lang/String;F)V
     .locals 3
     .param p0, "TAG"    # Ljava/lang/String;
     .param p1, "msg"    # Ljava/lang/String;
@@ -107,7 +107,7 @@
 .end method
 
 #INTEGER
-.method private static Log(Ljava/lang/String;Ljava/lang/String;I)V
+.method public static Log(Ljava/lang/String;Ljava/lang/String;I)V
     .locals 3
     .param p0, "TAG"    # Ljava/lang/String;
     .param p1, "msg"    # Ljava/lang/String;
@@ -131,7 +131,7 @@
 
 
 #LONG
-.method private static Log(Ljava/lang/String;Ljava/lang/String;J)V
+.method public static Log(Ljava/lang/String;Ljava/lang/String;J)V
     .locals 2
     .param p0, "TAG"    # Ljava/lang/String;
     .param p1, "msg"    # Ljava/lang/String;
@@ -143,7 +143,7 @@
 .end method
 
 #STRING
-.method private static Log(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+.method public static Log(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
     .locals 2
     .param p0, "TAG"    # Ljava/lang/String;
     .param p1, "msg"    # Ljava/lang/String;
@@ -164,7 +164,7 @@
 .end method
 
 #SHORT
-.method private static Log(Ljava/lang/String;Ljava/lang/String;S)V
+.method public static Log(Ljava/lang/String;Ljava/lang/String;S)V
     .locals 3
     .param p0, "TAG"    # Ljava/lang/String;
     .param p1, "msg"    # Ljava/lang/String;
@@ -187,7 +187,7 @@
 .end method
 
 #BOOLEAN
-.method private static Log(Ljava/lang/String;Ljava/lang/String;Z)V
+.method public static Log(Ljava/lang/String;Ljava/lang/String;Z)V
     .locals 3
     .param p0, "TAG"    # Ljava/lang/String;
     .param p1, "msg"    # Ljava/lang/String;
