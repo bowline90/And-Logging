@@ -51,6 +51,21 @@ To insert log features, you should write on *smali* file:
 
 **Pay Attention**: The script insert smali command just after the `#LOG` command. In order to avoid problems with the correct execution-flow, I suggest to insert `#LOG` BEFORE the first smali command.
 
+Example:
+```
+.method public Testing(IFC)V
+	.locals 4
+	.param p1, "a"    # I
+	.param p2, "b"    # F
+	.param p3, "c"    # C
+	.prologue
+	.line 36
+	#LOG PARAMETERS
+	sget-object v0, Ljava/lang/System;->out:Ljava/io/PrintStream;
+  .
+  .
+```
+
 ## Limitations
 
 This project is in the first stage, so that are a lot of problem and limitations (e.g. only one device connected at the time and *Logcat* print only "Injection" log).
