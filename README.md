@@ -3,10 +3,10 @@
 ## Description
 This tool allow to speed up the reverse engineering activity automating some typical reverse engineering operation on Android APK.
 It allow to automate:
-- Insert logging method in *Logcat*
+- Insert *logging* method
 - Repack smali code into *APK*
 - Install *APK* into device
-- Start application and print *Logcat*
+- Start application and output *Logcat*
 
 ## Installation
 *Android Logging Tool* requirement:
@@ -18,7 +18,7 @@ It allow to automate:
 Step to use Android Logging Tool:
 
 1. Install all requirements
-2. Adding to path the folder where you download the tool
+2. Adding to environment path the folder where you download the tool
 3. Run `explore.py`
 
 ## Configuration
