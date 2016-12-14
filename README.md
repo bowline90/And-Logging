@@ -6,7 +6,7 @@ It allow to automate:
 - Insert logging method in *Logcat*
 - Repack smali code into *APK*
 - Install *APK* into device
-- Start application and output *Logcat*
+- Start application and print *Logcat*
 
 ## Installation
 *Android Logging Tool* requirement:
@@ -41,10 +41,15 @@ For example (with *app-debug.apk*):
 3. explore.py
 4. Have fun
 ```
+### Logging features
+This tool allow to insert log (throught *Logcat*) function in order to log the value of the variables
 
-This tool allow to log (throught *Logcat*) methods parameters and stack trace. To insert log features, you should write on *smali* file `#LOG PARAMETERS` and `#LOG STACK`.
+To insert log features, you should write on *smali* file:
+- `#LOG PARAMETERS` to log the method's parameters
+- `#LOG STACK` to log the stack trace
+- `#LOG v#` to log the register `v#` (this function is not yet implemented)
 
-**Pay Attention**: The script insert smali command just after the `#LOG`. In order to avoid problems with the correct execution-flow, I suggest to insert `#LOG` BEFORE the first smali command.
+**Pay Attention**: The script insert smali command just after the `#LOG` command. In order to avoid problems with the correct execution-flow, I suggest to insert `#LOG` BEFORE the first smali command.
 
 ## Limitations
 
